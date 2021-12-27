@@ -1,0 +1,17 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = image_tag("avatar-user-default.png", height:"80", width:"150", class: "img mb-4")
+  h1.h3.mb-3.fw-normal Login
+  .form-floating
+    = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id:"floatingInput", placeholder:"name@example.com" 
+    = f.label :email, class: "form-label"
+  .form-floating
+    = f.password_field :password, autocomplete: "current-password", class: "form-control", id:"floatingPassword", placeholder:"Password"
+    = f.label :password, class: "form-label"
+  - if devise_mapping.rememberable?
+    .checkbox.mb-3
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Log in", class: "w-100 btn btn-lg btn-primary"
+  p.mt-5.mb-3.text-muted © 2021
+= render "devise/shared/links"
