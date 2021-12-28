@@ -19,16 +19,12 @@
 
 javascript:
     $('#week').change(function() {
+        let id_week = $(this).val()
+        $(".week_lbls").hide()
+        $("#label_week_"+id_week).show()
         $.get('#{select_week_path}', {
             //method: 'GET', (API says default is async/GET)
             //async: true,
             data: { week: $(this).val() }        
         });
     });
-
-    $("#week").change(function() {
-        let id_week = $(this).val()
-        $(".week_lbls").hide()
-        $("#label_week_"+id_week).show()
-
-    })
