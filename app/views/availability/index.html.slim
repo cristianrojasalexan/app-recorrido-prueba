@@ -1,0 +1,34 @@
+
+.container 
+    .row.m-5.p-5
+        .col
+            h2 Seleccione su disponibilidad
+            = form_with(url: select_week_path, method: :post) do |form|
+                - i = 1
+                - array_weeks = []
+                - array_select_weeks= []
+                - 10.times do
+                    - date_week = DateTime.now() + i.week
+                    - array_select_weeks << ["Semana #{date_week.strftime('%V').to_i} de #{date_week.strftime('%Y')} ", date_week.strftime('%V').to_i]
+                    - array_weeks << ["#{date_week}"]
+                    p.week_lbls style="#{i == 1? '' : 'display:none'}" id="label_week_#{date_week.strftime('%V').to_i}"= p "#{beginning_of_the_week(date_week).strftime('%d/%m/%Y')} -> #{end_of_the_week(date_week).strftime('%d/%m/%Y')}"
+                    - i += 1
+                    - start_day = beginning_of_the_week(date_week)
+                = form.select :week, array_select_weeks,{:include_blank => false}, {:class => "form-select"}
+            .p-4#show_schedule
+
+javascript:
+    $('#week').change(function() {
+        $.get('#{select_week_path}', {
+            //method: 'GET', (API says default is async/GET)
+            //async: true,
+            data: { week: $(this).val() }        
+        });
+    });
+
+    $("#week").change(function() {
+        let id_week = $(this).val()
+        $(".week_lbls").hide()
+        $("#label_week_"+id_week).show()
+
+    })

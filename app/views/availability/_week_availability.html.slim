@@ -1,0 +1,25 @@
+= form_with(url: availability_index_path, method: :post) do |form|
+    - day_of_week = 1
+    - start_day = beginning_of_the_week(DateTime.now() + @week_selected.week)
+    - 7.times do
+        table.table.table-responsive
+            thead
+                tr
+                    th colspan="3"= "#{I18n.l(start_day, format: "%A %d de %B").capitalize}"
+                tr
+                    th Hora
+                    th.text-center ¿Disponible?
+            tbody
+                - if day_of_week <= 5
+                    - hours = week_schedule
+                - else
+                    - hours = weekend_schedule
+                - hour_add = 0
+                - hours.each do |shift_hour|
+                    tr
+                        td= shift_hour
+                        td.text-center= form.check_box "availability[#{(DateTime.now() + @week_selected.week).strftime('%V').to_i}][#{hour_add}]", { class: 'form-check-input', checked: false }, day_of_week <= 5 ? get_time_week(start_day, hour_add) : get_time_weekend(start_day, hour_add)
+                    - hour_add += 1
+        - day_of_week += 1
+        - start_day += 1.day
+    = form.submit class:"btn btn-success"
