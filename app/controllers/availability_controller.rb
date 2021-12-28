@@ -4,7 +4,13 @@ class AvailabilityController < ApplicationController
     def create
         params[:availability].each do |date|
             if date.present? && date != "0"
-                Availability.create(users_id: current_user.id, start_time: Time.parse(date), end_time: Time.parse(date) + 1.hour)
+                Availability.create(
+                    users_id: current_user.id, 
+                    start_time: Time.parse(date), 
+                    end_time: Time.parse(date) + 1.hour,
+                    date_full: DateTime.parse(date),
+                    day_number_in_week: Date.parse(date).strftime("%u")
+                    )
             end
         end
     end
