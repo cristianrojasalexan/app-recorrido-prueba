@@ -4,6 +4,12 @@ h2
   = image_tag("avatar-user-default.png", height:"80", width:"150", class: "img mb-4")
   = render "devise/shared/error_messages", resource: resource
   .form-floating
+    = f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "Cristian"
+    = f.label :name, class: "form-label"
+  .form-floating
+    = f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control", placeholder: "Rojas"
+    = f.label :last_name, class: "form-label"
+  .form-floating
     = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "name@example.com"
     = f.label :email, class: "form-label"
   .form-floating
