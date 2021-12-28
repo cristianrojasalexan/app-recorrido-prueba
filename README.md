@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##### Prerequisites
 
-Things you may want to cover:
+The setups steps expect following tools installed on the system.
 
-* Ruby version
+- Github
+- Ruby [3.0.2]
+- Rails [6.1.4]
 
-* System dependencies
+##### 1. Check out the repository
 
-* Configuration
+```bash
+git clone https://github.com/cristianrojasalexan/app-recorrido-prueba.git
+```
 
-* Database creation
+##### 2. Database creation
+```ruby
+rails db:setup
+```
 
-* Database initialization
+##### 3. Database initialization
+```ruby
+rails db:migration
+```
 
-* How to run the test suite
+##### 4. Install gems
+```ruby
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##### 5. Start the Rails server
+```ruby
+rails s
+```
+And now you can visit the site with the URL http://localhost:3000
