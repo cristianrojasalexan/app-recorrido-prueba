@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_28_063211) do
+ActiveRecord::Schema.define(version: 2021_12_28_101105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint "users_id"
+    t.datetime "date_full"
+    t.time "start_time"
+    t.time "end_time"
+    t.boolean "available"
+    t.string "day_of_the_week"
+    t.string "day_number_in_week"
+    t.boolean "is_holiday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_availabilities_on_users_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

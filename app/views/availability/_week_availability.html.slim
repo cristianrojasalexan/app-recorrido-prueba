@@ -18,7 +18,7 @@
                 - hours.each do |shift_hour|
                     tr
                         td= shift_hour
-                        td.text-center= form.check_box "availability[#{(DateTime.now() + @week_selected.week).strftime('%V').to_i}][#{hour_add}]", { class: 'form-check-input', checked: false }, day_of_week <= 5 ? get_time_week(start_day, hour_add) : get_time_weekend(start_day, hour_add)
+                        td.text-center= form.check_box "availability[]", { class: 'form-check-input', checked: false }, day_of_week <= 5 ? get_time_week(start_day, hour_add) : get_time_weekend(start_day, hour_add)
                     - hour_add += 1
         - day_of_week += 1
         - start_day += 1.day
